@@ -20,10 +20,11 @@
                                 <a href="{{ route('alquileres.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}
                                 </a>
-                              </div>
+
+                             </div>
                         </div>
                     </div>
-                    @if ($message = Session::get('success'))
+                    @if ($message = Session::get('success')) 
                         <div class="alert alert-success m-4">
                             <p>{{ $message }}</p>
                         </div>
@@ -39,7 +40,7 @@
 									<th >Fechainicial</th>
 									<th >Fechafinal</th>
 									<th >Tpalquiler</th>
-									<th >Bicicletas</th>
+									<th >IBicicletas</th>
 
                                         <th></th>
                                     </tr>
@@ -58,6 +59,7 @@
                                                 <form action="{{ route('alquileres.destroy', $alquilere->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary " href="{{ route('alquileres.show', $alquilere->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
                                                     <a class="btn btn-sm btn-success" href="{{ route('alquileres.edit', $alquilere->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('entregas.create', $alquilere->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Entregar') }}</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>

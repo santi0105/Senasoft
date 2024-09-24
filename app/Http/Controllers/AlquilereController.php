@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Alquilere;
 use App\Models\User;
+use App\Models\Bicicleta;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\AlquilereRequest;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 
 class AlquilereController extends Controller
@@ -28,9 +30,10 @@ class AlquilereController extends Controller
      */
     public function create(): View
     {
-        $alquilere = new Alquilere();
-        
-        return view('alquilere.create', compact('alquilere'));
+        $alquilere = new Alquilere();     
+       $bicicletas= Bicicleta::all();
+        $users= User::all();
+        return view('alquilere.create',compact('alquilere','users','bicicletas'));
     }
 
     /**
@@ -39,19 +42,22 @@ class AlquilereController extends Controller
     public function store(AlquilereRequest $request): RedirectResponse
     {
         Alquilere::create($request->validated());
-
+        
         return Redirect::route('alquileres.index')
             ->with('success', 'Alquilere created successfully.');
     }
 
     /**
      * Display the specified resource.
-     */ public function showID($id):view
+     */ 
+
+   
+
     public function show($id): View
     {
+        $alquileres = Alquilere::all();
         $alquilere = Alquilere::find($id);
-
-        return view('alquilere.show', compact('alquilere'));
+        return view('alquilere.show', compact('alquilere','alquileres'));
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Entrega;
+use App\Models\Alquilere;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\EntregaRequest;
@@ -27,9 +28,10 @@ class EntregaController extends Controller
      */
     public function create(): View
     {
+        $alquileres = Alquilere::all();
         $entrega = new Entrega();
 
-        return view('entrega.create', compact('entrega'));
+        return view('entrega.create', compact('entrega','alquileres'));
     }
 
     /**

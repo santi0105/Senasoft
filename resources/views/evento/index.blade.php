@@ -35,7 +35,8 @@
                                 <thead class="thead">
                                     <tr>
                                         <th>No</th>
-                                        
+                                       
+                                    <th >Img</th>
 									<th >Nombreevento</th>
 									<th >Fecha</th>
 									<th >Hora</th>
@@ -49,7 +50,7 @@
                                     @foreach ($eventos as $evento)
                                         <tr>
                                             <td>{{ ++$i }}</td>
-                                            
+                                        <td >{{ $evento->img }}</td>
 										<td >{{ $evento->nombreEvento }}</td>
 										<td >{{ $evento->fecha }}</td>
 										<td >{{ $evento->hora }}</td>
@@ -76,4 +77,16 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        @foreach ($eventos as $evento)
+            <div class="card" style="width: 18rem;">
+                <img src="{{ asset('storage/' . $evento->img) }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $evento->nombreEvento }}</h5>
+                        <p class="card-text">{{ $evento->fecha }}  -  {{ $evento->hora }}</p>
+                        <a href="{{ route('eventos.create') }}" class="btn btn-primary">Ver Evento</a>
+                    </div>
+            </div>
+        @endforeach   
+    </div> 
 @endsection

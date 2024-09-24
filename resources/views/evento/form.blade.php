@@ -1,6 +1,11 @@
 <div class="row padding-1 p-1">
     <div class="col-md-12">
         
+         <div class="form-group mb-2 mb20">
+            <label for="img" class="form-label">{{ __('Img') }}</label>
+            <input type="file" accept="image/*" name="img" class="form-control @error('img') is-invalid @enderror" value="{{ old('img', $evento?->img) }}" id="img" placeholder="Img">
+            {!! $errors->first('img', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+        </div>
         <div class="form-group mb-2 mb20">
             <label for="nombre_evento" class="form-label">{{ __('Nombreevento') }}</label>
             <input type="text" name="nombreEvento" class="form-control @error('nombreEvento') is-invalid @enderror" value="{{ old('nombreEvento', $evento?->nombreEvento) }}" id="nombre_evento" placeholder="Nombreevento">
@@ -8,12 +13,12 @@
         </div>
         <div class="form-group mb-2 mb20">
             <label for="fecha" class="form-label">{{ __('Fecha') }}</label>
-            <input type="text" name="fecha" class="form-control @error('fecha') is-invalid @enderror" value="{{ old('fecha', $evento?->fecha) }}" id="fecha" placeholder="Fecha">
+            <input type="date" name="fecha" class="form-control @error('fecha') is-invalid @enderror" value="{{ old('fecha', $evento?->fecha) }}" id="fecha" placeholder="Fecha">
             {!! $errors->first('fecha', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="form-group mb-2 mb20">
             <label for="hora" class="form-label">{{ __('Hora') }}</label>
-            <input type="text" name="hora" class="form-control @error('hora') is-invalid @enderror" value="{{ old('hora', $evento?->hora) }}" id="hora" placeholder="Hora">
+            <input type="time" name="hora" class="form-control @error('hora') is-invalid @enderror" value="{{ old('hora', $evento?->hora) }}" id="hora" placeholder="Hora">
             {!! $errors->first('hora', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="form-group mb-2 mb20">
@@ -22,9 +27,7 @@
             {!! $errors->first('lugar', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="form-group mb-2 mb20">
-            <label for="id_users" class="form-label">{{ __('Id Users') }}</label>
-            <input type="text" name="id_users" class="form-control @error('id_users') is-invalid @enderror" value="{{ old('id_users', $evento?->id_users) }}" id="id_users" placeholder="Id Users">
-            {!! $errors->first('id_users', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+            <input type="hidden" name="id_users" class="form-control @error('id_users') is-invalid @enderror" value="{{ Auth::user()->id }}" id="id_users" placeholder="Id Users">
         </div>
 
     </div>

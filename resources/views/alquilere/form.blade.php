@@ -12,20 +12,34 @@
             {!! $errors->first('fechaFinal', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="form-group mb-2 mb20">
-            <label for="tp_alquiler" class="form-label">{{ __('Tpalquiler') }}</label>
-            <input type="text" name="tpAlquiler" class="form-control @error('tpAlquiler') is-invalid @enderror" value="{{ old('tpAlquiler', $alquilere?->tpAlquiler) }}" id="tp_alquiler" placeholder="Tpalquiler">
-            {!! $errors->first('tpAlquiler', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+            <label for="tp_alquiler" class="form-label">{{ __('Tipo de alquiler') }}</label>
+            <select class="form-select" name='tpAlquiler' aria-label="Default select example">
+                <option value="hora">Hora</option>
+                <option value="semanal">semanal</option>
+                <option value="Mensual">Mensual</option>
+              </select>
         </div>
    
         <div class="form-group mb-2 mb20">
-           
-            <label for="id_users" class="form-label">{{ __('Id Users') }}</label>
-            <input type="text" name="id_users" class="form-control @error('id_users') is-invalid @enderror"  id="id_users" placeholder="Id Users">
+            <select name="id_users" id="id_users" class="form-control @error('id_users') is-invalid @enderror">
+                @foreach ($users as $user)
+                    <option value="{{ $user->id }}">{{ $user->name }} - {{ $user->apellido }}</option>
+                @endforeach
+            </select>
+            
             {!! $errors->first('id_users', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="form-group mb-2 mb20">
-            <label for="id_bicicletas" class="form-label">{{ __('Id Bicicletas') }}</label>
-            <input type="text" name="id_bicicletas" class="form-control @error('id_bicicletas') is-invalid @enderror" value="{{ old('id_bicicletas', $alquilere?->id_bicicletas) }}" id="id_bicicletas" placeholder="Id Bicicletas">
+            <label for="tp_alquiler" class="form-label">{{ __('Bicicletas') }}</label>
+           
+            <select class="form-select" aria-label="Default select example" name="id_bicicletas">
+                @foreach ($bicicletas as $bicicleta)
+               
+                <option value="{{ $bicicleta->id }}"> {{ $bicicleta->marca }}  -  {{ $bicicleta->centro->nombre }}</option>
+                @endforeach
+              </select>
+   
+         
             {!! $errors->first('id_bicicletas', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
 

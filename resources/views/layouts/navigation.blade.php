@@ -22,7 +22,7 @@
                 @endphp
                         <!-- Navegacio Bicicletas -->
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <x-nav-link :href="route('bicicletas.index')" :active="request()->routeIs('dashboard')">
+                                <x-nav-link :href="route('bicicletas.index')" :active="request()->routeIs('bicicletas.index')">
                                     {{ __('Gestion de Bicicletas') }}
                                 </x-nav-link>
                             </div>
@@ -30,6 +30,12 @@
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                 <x-nav-link :href="route('alquileres.index')" :active="request()->routeIs('alquileres.index')">
                                     {{ __('Alquileres') }}
+                                </x-nav-link>
+                            </div>
+                        <!-- Navegacion Entrega -->
+                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <x-nav-link :href="route('entregas.index')" :active="request()->routeIs('entregas.index')">
+                                    {{ __('Gestion Entrega') }}
                                 </x-nav-link>
                             </div>
                         <!-- Navegacion Centros -->
@@ -56,7 +62,7 @@
                     
                         <!-- Navegacion Alquiler Bicicletas -->
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <x-nav-link :href="route('alquileres.index')" :active="request()->routeIs('alquileres.index')">
+                                <x-nav-link :href="route('bicicletas.index')" :active="request()->routeIs('alquileres.index')">
                                     {{ __('Alquiler de bicicletas') }}
                                 </x-nav-link>
                             </div>

@@ -27,6 +27,7 @@ class EventoRequest extends FormRequest
 			'hora' => 'required',
 			'lugar' => 'required|string',
 			'id_users' => 'required',
+			'img' => 'file|mimes:png,jpg,jpeg,gif|max:2048',
         ];
     }
 }

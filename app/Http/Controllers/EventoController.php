@@ -37,10 +37,21 @@ class EventoController extends Controller
      */
     public function store(EventoRequest $request): RedirectResponse
     {
-        Evento::create($request->validated());
+        $evento = new Evento();
+        $evento->nombreEvento = $request->nombreEvento;
+        $evento->fecha = $request->fecha;
+        $evento->hora = $request->hora;
+        $evento->lugar = $request->lugar;
+        $evento->id_users = $request->id_users;
 
-        return Redirect::route('eventos.index')
-            ->with('success', 'Evento created successfully.');
+        if($request->hasFile('img')){
+            $path = $request->file('img')->store('fotos','public');
+            $evento->img = $path;
+        }
+
+        $evento->save();
+
+        return redirect()->route('eventos.index')->with('success','Evento creado correctamente.');
     }
 
     /**

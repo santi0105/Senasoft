@@ -30,7 +30,7 @@ class Evento extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['nombreEvento', 'fecha', 'hora', 'lugar', 'id_users'];
+    protected $fillable = ['nombreEvento', 'fecha', 'hora', 'lugar', 'id_users','img'];
 
 
     /**

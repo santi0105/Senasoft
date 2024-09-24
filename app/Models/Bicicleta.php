@@ -32,7 +32,7 @@ class Bicicleta extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['img', 'marca', 'color', 'estado', 'precioHora', 'id_centros'];
+    protected $fillable = ['id','img', 'marca', 'color', 'estado', 'precioHora', 'id_centros'];
 
 
     /**
