@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Role;
+use App\Models\Centro;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -19,7 +21,9 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+        $roles = Role::all();
+        $centros = Centro::all();
+        return view('auth.register',compact('roles','centros'));
     }
 
     /**
@@ -39,6 +43,13 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'apellido'=>$request->apellido,
+            'regional'=>$request->regional,
+            'tp_documento'=>$request->tp_documento,
+            'documento'=>$request->documento,
+            'estrato'=>$request->estrato,
+            'id_centros'=>$request->id_centros,
+            'id_roles'=>$request->id_roles,
         ]);
 
         event(new Registered($user));
