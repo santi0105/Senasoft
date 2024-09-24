@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Alquileres
+    Eventos
 @endsection
 
 @section('content')
@@ -13,11 +13,11 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Alquileres') }}
+                                {{ __('Eventos') }}
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('alquileres.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                <a href="{{ route('eventos.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}
                                 </a>
                               </div>
@@ -36,28 +36,30 @@
                                     <tr>
                                         <th>No</th>
                                         
-									<th >Fechainicial</th>
-									<th >Fechafinal</th>
-									<th >Tpalquiler</th>
-									<th >Bicicletas</th>
+									<th >Nombreevento</th>
+									<th >Fecha</th>
+									<th >Hora</th>
+									<th >Lugar</th>
+									<th >Id Users</th>
 
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($alquileres as $alquilere)
+                                    @foreach ($eventos as $evento)
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-										<td >{{ $alquilere->fechaInicial }}</td>
-										<td >{{ $alquilere->fechaFinal }}</td>
-										<td >{{ $alquilere->tpAlquiler }}</td>
-										<td >{{ $alquilere->bicicleta->marca }}</td>
+										<td >{{ $evento->nombreEvento }}</td>
+										<td >{{ $evento->fecha }}</td>
+										<td >{{ $evento->hora }}</td>
+										<td >{{ $evento->lugar }}</td>
+										<td >{{ $evento->id_users }}</td>
 
                                             <td>
-                                                <form action="{{ route('alquileres.destroy', $alquilere->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('alquileres.show', $alquilere->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('alquileres.edit', $alquilere->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                <form action="{{ route('eventos.destroy', $evento->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('eventos.show', $evento->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('eventos.edit', $evento->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
@@ -70,7 +72,7 @@
                         </div>
                     </div>
                 </div>
-                {!! $alquileres->withQueryString()->links() !!}
+                {!! $eventos->withQueryString()->links() !!}
             </div>
         </div>
     </div>

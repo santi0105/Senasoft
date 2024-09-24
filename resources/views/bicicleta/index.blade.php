@@ -78,4 +78,12 @@
             </div>
         </div>
     </div>
+    <div class="card" style="width: 18rem;">
+        <img src="{{ asset('storage/' . $bicicleta->img) }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{ $bicicleta->marca }}</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary">Alquilar</a>
+            </div>
+    </div>
 @endsection

@@ -6,6 +6,8 @@ use App\Http\Controllers\CentroController;
 use App\Http\Controllers\BicicletaController;
 use App\Http\Controllers\AlquilereController;
 use App\Http\Controllers\EntregaController;
+use App\Http\Controllers\EventoController;
+use App\Http\Controllers\EstadisticaController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -25,6 +27,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('bicicletas', BicicletaController::class);
     Route::resource('alquileres', AlquilereController::class);
     Route::resource('entregas', EntregaController::class);
+    Route::resource('eventos', EventoController::class);
+    Route::resource('estadisticas', EstadisticaController::class);
 });
 
 require __DIR__.'/auth.php';

@@ -37,10 +37,21 @@ class BicicletaController extends Controller
      */
     public function store(BicicletaRequest $request): RedirectResponse
     {
-        Bicicleta::create($request->validated());
+        $bicicleta = new Bicicleta();
+        $bicicleta->marca = $request->marca;
+        $bicicleta->color = $request->color;
+        $bicicleta->estado = $request->estado;
+        $bicicleta->precioHora = $request->precioHora;
+        $bicicleta->id_centros = $request->id_centros;
+        
+        if($request->hasFile('img')){
+            $path = $request->file('img')->store('fotos','public');
+            $bicicleta->img = $path;
+        }
+        $bicicleta->save();
 
-        return Redirect::route('bicicletas.index')
-            ->with('success', 'Bicicleta created successfully.');
+        return redirect()->route('bicicletas.index')->with('success','Bicicleta añadida correctamente.');
+
     }
 
     /**

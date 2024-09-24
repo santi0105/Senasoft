@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    {{ $bicicleta->name ?? __('Show') . " " . __('Bicicleta') }}
+    {{ $evento->name ?? __('Show') . " " . __('Evento') }}
 @endsection
 
 @section('content')
@@ -11,38 +11,34 @@
                 <div class="card">
                     <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Bicicleta</span>
+                            <span class="card-title">{{ __('Show') }} Evento</span>
                         </div>
                         <div class="float-right">
-                            <a class="btn btn-primary btn-sm" href="{{ route('bicicletas.index') }}"> {{ __('Back') }}</a>
+                            <a class="btn btn-primary btn-sm" href="{{ route('eventos.index') }}"> {{ __('Back') }}</a>
                         </div>
                     </div>
 
                     <div class="card-body bg-white">
                         
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Img:</strong>
-                                    <img src="{{ asset('storage/' . $bicicleta->img) }}" alt="$bicicleta->marca">
+                                    <strong>Nombreevento:</strong>
+                                    {{ $evento->nombreEvento }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Marca:</strong>
-                                    {{ $bicicleta->marca }}
+                                    <strong>Fecha:</strong>
+                                    {{ $evento->fecha }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Color:</strong>
-                                    {{ $bicicleta->color }}
+                                    <strong>Hora:</strong>
+                                    {{ $evento->hora }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Estado:</strong>
-                                    {{ $bicicleta->estado }}
+                                    <strong>Lugar:</strong>
+                                    {{ $evento->lugar }}
                                 </div>
                                 <div class="form-group mb-2 mb20">
-                                    <strong>Preciohora:</strong>
-                                    {{ $bicicleta->precioHora }}
-                                </div>
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Id Centros:</strong>
-                                    {{ $bicicleta->id_centros }}
+                                    <strong>Id Users:</strong>
+                                    {{ $evento->id_users }}
                                 </div>
 
                     </div>

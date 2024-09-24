@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Alquilere;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\AlquilereRequest;
@@ -28,7 +29,7 @@ class AlquilereController extends Controller
     public function create(): View
     {
         $alquilere = new Alquilere();
-
+        
         return view('alquilere.create', compact('alquilere'));
     }
 
@@ -45,7 +46,7 @@ class AlquilereController extends Controller
 
     /**
      * Display the specified resource.
-     */
+     */ public function showID($id):view
     public function show($id): View
     {
         $alquilere = Alquilere::find($id);

@@ -13,37 +13,68 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('Inicio') }}
                     </x-nav-link>
                 </div>
                 @php
                 $rol = Auth::user()->id_roles;
-                    if($rol == 1)
+                    if($rol == 1){
                 @endphp
-                        <!-- Navigation Links -->
+                        <!-- Navegacio Bicicletas -->
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                                <x-nav-link :href="route('bicicletas.index')" :active="request()->routeIs('dashboard')">
+                                    {{ __('Gestion de Bicicletas') }}
+                                </x-nav-link>
+                            </div>
+                        <!-- Navegacion Alquiler -->
+                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <x-nav-link :href="route('alquileres.index')" :active="request()->routeIs('alquileres.index')">
+                                    {{ __('Alquileres') }}
+                                </x-nav-link>
+                            </div>
+                        <!-- Navegacion Centros -->
+                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <x-nav-link :href="route('centros.index')" :active="request()->routeIs('centros.index')">
+                                    {{ __('Centros') }}
+                                </x-nav-link>
+                            </div>
+                        <!-- Navegacion Eventos -->
+                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <x-nav-link :href="route('eventos.index')" :active="request()->routeIs('eventos.index')">
+                                    {{ __('Eventos') }}
+                                </x-nav-link>
+                            </div>
+                        <!-- Navegacion Estadisticas -->
+                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <x-nav-link :href="route('estadisticas.index')" :active="request()->routeIs('estadisticas.index')">
+                                    {{ __('Estadisticas') }}
+                                </x-nav-link>
+                            </div>
+                @php
+                    }else if($rol == 2){
+                @endphp
+                    
+                        <!-- Navegacion Alquiler Bicicletas -->
+                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <x-nav-link :href="route('alquileres.index')" :active="request()->routeIs('alquileres.index')">
+                                    {{ __('Alquiler de bicicletas') }}
+                                </x-nav-link>
+                            </div>
+                        <!-- Navegacion Eventos -->
+                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <x-nav-link :href="route('eventos.index')" :active="request()->routeIs('eventos.index')">
                                     {{ __('Dashboard') }}
                                 </x-nav-link>
                             </div>
-                        <!-- Navigation Links -->
-                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                                    {{ __('Dashboard') }}
-                                </x-nav-link>
-                            </div>
-                        <!-- Navigation Links -->
-                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                                    {{ __('Dashboard') }}
-                                </x-nav-link>
-                            </div>
-                        <!-- Navigation Links -->
-                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                                    {{ __('Dashboard') }}
-                                </x-nav-link>
-                            </div>
+                @php
+                    }else{
+                @endphp
+                        <span>Hola</span>
+                @php
+                    }   
+                @endphp
+                    
+                
             </div>
 
             <!-- Settings Dropdown -->

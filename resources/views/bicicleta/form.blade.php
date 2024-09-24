@@ -3,7 +3,7 @@
         
         <div class="form-group mb-2 mb20">
             <label for="img" class="form-label">{{ __('Img') }}</label>
-            <input type="text" name="img" class="form-control @error('img') is-invalid @enderror" value="{{ old('img', $bicicleta?->img) }}" id="img" placeholder="Img">
+            <input type="file" accept="image/*" name="img" class="form-control @error('img') is-invalid @enderror" value="{{ old('img', $bicicleta?->img) }}" id="img" placeholder="Img">
             {!! $errors->first('img', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="form-group mb-2 mb20">
@@ -18,7 +18,10 @@
         </div>
         <div class="form-group mb-2 mb20">
             <label for="estado" class="form-label">{{ __('Estado') }}</label>
-            <input type="text" name="estado" class="form-control @error('estado') is-invalid @enderror" value="{{ old('estado', $bicicleta?->estado) }}" id="estado" placeholder="Estado">
+            <select name="estado" id="estado" class="form-control @error('estado') is-invalid @enderror" value="{{ old('estado', $bicicleta?->estado) }}">
+                <option value="Inactiva">Inactiva</option>
+                <option value="Activa">Activa</option>
+            </select>
             {!! $errors->first('estado', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="form-group mb-2 mb20">
