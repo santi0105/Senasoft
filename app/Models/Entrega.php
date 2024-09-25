@@ -29,7 +29,7 @@ class Entrega extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = ['id_alquileres', 'valorPagar', 'tarifaAdicional'];
+    protected $fillable = ['id_alquileres', 'valorPagar', 'tarifaAdicional','totalPagar'];
 
 
     /**

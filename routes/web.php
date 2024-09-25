@@ -9,7 +9,10 @@ use App\Http\Controllers\EntregaController;
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\EstadisticaController;
 use App\Http\Controllers\AsistenciaController;
+use App\Http\Controllers\ReseñaController;
 use Illuminate\Support\Facades\Route;
+use App\Mail\ContactanosMailable;
+use Illuminate\Support\Facades\Mail;
 
 Route::get('/', function () {
     return view('welcome');
@@ -31,6 +34,20 @@ Route::middleware('auth')->group(function () {
     Route::resource('eventos', EventoController::class);
     Route::resource('estadisticas', EstadisticaController::class);
     Route::resource('asistencias', AsistenciaController::class);
+    Route::get('contactanos', function () {
+        $correo = new ContactanosMailable;
+        $user= Auth::User('email');
+        Mail::to($user)->send($correo);
+        return Redirect::route('alquileres.index')
+        ->with('success', 'correo enviado correctamente.');
+
+  })->name('contactanos');
+
+
+  
+  Route::post('/reseñas', [ReseñaController::class, 'store'])->name('reseñas.store');
+
+  
 });
 
 require __DIR__.'/auth.php';

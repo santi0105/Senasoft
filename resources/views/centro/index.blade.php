@@ -9,12 +9,12 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header" style="background-color: #4CAF50; color: white;">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
                             <span id="card_title">{{ __('Centros') }}</span>
                             <div class="float-right">
-                                <a href="{{ route('centros.create') }}" class="btn btn-primary btn-sm float-right" data-placement="left">
-                                    {{ __('Create New') }}
+                                <a href="{{ route('centros.create') }}" class="btn btn-light btn-sm" data-placement="left">
+                                    {{ __('Crear Nuevo') }}
                                 </a>
                             </div>
                         </div>
@@ -26,10 +26,10 @@
                         </div>
                     @endif
 
-                    <div class="card-body bg-white">
+                    <div class="card-body bg-light">
                         <div class="table-responsive">
                             <table class="table table-striped table-hover">
-                                <thead class="thead">
+                                <thead class="thead" style="background-color: #d0e9d0;">
                                     <tr>
                                         <th>No</th>
                                         <th>Nombre</th>
@@ -49,22 +49,40 @@
                                             <td>{{ $centro->longitud }}</td>
                                             <td>
                                                 <form action="{{ route('centros.destroy', $centro->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary" href="{{ route('centros.show', $centro->id) }}">
-                                                        <i class="fa fa-fw fa-eye"></i> {{ __('Show') }}
-                                                    </a>
+                                                    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#mapModal{{ $centro->id }}">
+                                                        <i class="fa fa-fw fa-eye"></i> {{ __('Ver Mapa') }}
+                                                    </button>
                                                     <a class="btn btn-sm btn-success" href="{{ route('centros.edit', $centro->id) }}">
-                                                        <i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}
+                                                        <i class="fa fa-fw fa-edit"></i> {{ __('Actualizar') }}
                                                     </a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm" 
                                                         onclick="event.preventDefault(); 
-                                                        confirm('Are you sure to delete?') ? this.closest('form').submit() : false;">
-                                                        <i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}
+                                                        confirm('¿Está seguro de eliminar?') ? this.closest('form').submit() : false;">
+                                                        <i class="fa fa-fw fa-trash"></i> {{ __('Eliminar') }}
                                                     </button>
                                                 </form>
                                             </td>
                                         </tr>
+
+                                        <!-- Modal para el Mapa -->
+                                        <div class="modal fade" id="mapModal{{ $centro->id }}" tabindex="-1" aria-labelledby="mapModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header" style="background-color: #4CAF50; color: white;">
+                                                        <h5 class="modal-title" id="mapModalLabel">{{ __('Mapa de: ' . $centro->nombre) }}</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div id="map{{ $centro->id }}" style="height: 400px;"></div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('Cerrar') }}</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     @endforeach
                                 </tbody>
                             </table>
@@ -76,7 +94,6 @@
         </div>
     </div>
 
-    <div id="map" style="height: 500px;"></div>
     <script>
         require([
             "esri/Map",
@@ -84,21 +101,17 @@
             "esri/Graphic",
             "esri/symbols/SimpleMarkerSymbol"
         ], function(Map, MapView, Graphic, SimpleMarkerSymbol) {
-            var map = new Map({
-                basemap: "streets-navigation-vector" // Cambia el basemap si lo deseas
-            });
+            @foreach ($centros as $centro)
+                var map{{ $centro->id }} = new Map({
+                    basemap: "streets-navigation-vector"
+                });
 
-            var view = new MapView({
-                container: "map",
-                map: map,
-                center: [-74.0060, 40.7128], // Longitud y latitud de Nueva York
-                zoom: 10
-            });
-
-            // Evento para añadir un marcador al hacer clic en el mapa
-            view.on("click", function(event) {
-                var lat = event.mapPoint.latitude;
-                var lon = event.mapPoint.longitude;
+                var view{{ $centro->id }} = new MapView({
+                    container: "map{{ $centro->id }}",
+                    map: map{{ $centro->id }},
+                    center: [{{ $centro->longitud }}, {{ $centro->latitud }}], // Longitud y latitud del centro
+                    zoom: 12
+                });
 
                 // Crear un símbolo para el marcador
                 var pointSymbol = new SimpleMarkerSymbol({
@@ -114,17 +127,15 @@
                 var pointGraphic = new Graphic({
                     geometry: {
                         type: "point",
-                        longitude: lon,
-                        latitude: lat
+                        longitude: {{ $centro->longitud }},
+                        latitude: {{ $centro->latitud }}
                     },
                     symbol: pointSymbol
                 });
 
                 // Añadir el gráfico al mapa
-                view.graphics.add(pointGraphic);
-
-                console.log("Latitud: " + lat + ", Longitud: " + lon); // Para ver las coordenadas en la consola
-            });
+                view{{ $centro->id }}.graphics.add(pointGraphic);
+            @endforeach
         });
     </script>
 @endsection

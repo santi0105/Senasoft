@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Entrega;
 use App\Models\Alquilere;
+use App\Models\Bicicleta;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\EntregaRequest;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Carbon\Carbon;
 
 class EntregaController extends Controller
 {
@@ -16,12 +18,37 @@ class EntregaController extends Controller
      * Display a listing of the resource.
      */
     public function index(Request $request): View
-    {
-        $entregas = Entrega::paginate();
+{
+    $entregas = Entrega::paginate();
 
-        return view('entrega.index', compact('entregas'))
-            ->with('i', ($request->input('page', 1) - 1) * $entregas->perPage());
+    // Calcular ganancias mensuales
+    $mes = now()->format('n');
+    $anio = now()->format('Y');
+    $gananciasMensuales = array_fill(1, 12, 0); // Inicializa con ceros
+
+    for ($i = 1; $i <= 12; $i++) {
+        $inicio = Carbon::create($anio, $i, 1);
+        $fin = $inicio->copy()->endOfMonth();
+    
+        $gananciasMensuales[$i] = Entrega::whereBetween('created_at', [$inicio, $fin])
+            ->sum('totalPagar');
     }
+        
+
+
+    for ($i = 1; $i <= 12; $i++) {
+        $inicio = Carbon::create($anio, $i, 1);
+        $fin = $inicio->copy()->endOfMonth();
+
+        $gananciasMensuales[$i] = Entrega::whereBetween('created_at', [$inicio, $fin])
+            ->sum('totalPagar');
+    }
+
+    return view('entrega.index', compact('entregas', 'gananciasMensuales'))
+        ->with('i', ($request->input('page', 1) - 1) * $entregas->perPage());
+}
+
+    
 
     
 
@@ -64,6 +91,7 @@ class EntregaController extends Controller
     return Redirect::route('entregas.index')
         ->with('success', 'Entrega created successfully and bicycle activated.');
 }
+
 
 
     /**

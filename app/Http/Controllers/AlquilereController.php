@@ -76,11 +76,12 @@ class AlquilereController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id): View
+    public function edit(Request $request, $id): View
     {
         $alquilere = Alquilere::find($id);
+        $idBicicletas = $request->input('id_bicicletas');
 
-        return view('alquilere.edit', compact('alquilere'));
+        return view('alquilere.edit', compact('alquilere','idBicicletas'));
     }
 
     /**
@@ -89,6 +90,7 @@ class AlquilereController extends Controller
     public function update(AlquilereRequest $request, Alquilere $alquilere): RedirectResponse
     {
         $alquilere->update($request->validated());
+        
 
         return Redirect::route('alquileres.index')
             ->with('success', 'Alquilere updated successfully');

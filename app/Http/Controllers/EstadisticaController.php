@@ -3,40 +3,37 @@
 namespace App\Http\Controllers;
 
 use App\Models\Estadistica;
+use App\Models\Alquilere;
+use App\Models\Entrega;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\EstadisticaRequest;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
-use LaravelDaily\LaravelCharts\Classes\LaravelChart;
+use ConsoleTVs\Charts\Facades\Chart;
+use Carbon\Carbon;
 
 class EstadisticaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+   
     public function index(Request $request): View
     {
-        $chart_options = [
-            'chart_title' => 'Alquileres mensuales',
-            'chart_type' => 'bar',
-            'report_type' => 'group_by_relationship',
-            'model' => 'App\Models\Alquilere',
-        
-            'relationship_name' => 'bicicleta', // representa la funcion en el modelo
-            'group_by_field' => 'marca', // 
-        
-           
-            
-            'filter_field' => 'fechaInicial',
-            'filter_days' => 30, // show only transactions for last 30 days
-            'filter_period' => 'month', // show only transactions for this week
-        ];
-         $chart= new LaravelChart($chart_options); //compactamos chart en el return view
-
+        // Calcular ganancias mensuales
+        $mes = now()->format('n');
+        $anio = now()->format('Y');
+        $gananciasMensuales = [];
+    
+        for ($i = 1; $i <= 12; $i++) {
+            $inicio = Carbon::create($anio, $i, 1);
+            $fin = $inicio->copy()->endOfMonth();
+    
+            $gananciasMensuales[$i] = Entrega::whereBetween('created_at', [$inicio, $fin])
+                ->sum('totalPagar');
+        }
+    
         $estadisticas = Estadistica::paginate();
 
-        return view('estadistica.index', compact('estadisticas','chart'))
+        return view('estadistica.index', compact('estadisticas','gananciasMensuales'))
             ->with('i', ($request->input('page', 1) - 1) * $estadisticas->perPage());
     }
 

@@ -65,11 +65,9 @@
                             </table>
                           
                         </div>
-                        <div class="card-body">
-
-                            <h1>{{ $chart->options['chart_title'] }}</h1>
-                            {!! $chart->renderHtml() !!}
-        
+                        <div class="container">
+                            <h1>Cantidad de bicicletas alquiladas por mes</h1>
+                            <canvas id="alquileresChart"></canvas>
                         </div>
                     </div>
                 </div>
@@ -78,7 +76,35 @@
         </div>
     </div>
 @endsection
-@section('scripts')
-{!! $chart->renderChartJsLibrary() !!}
-{!! $chart->renderJs() !!}
-@endsection
+
+<script>
+    // Preparar datos para la gráfica
+    const ctx = document.getElementById('gananciasGrafica').getContext('2d');
+    const gananciasMensuales = @json($gananciasMensuales);
+    const meses = [
+        'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 
+        'Junio', 'Julio', 'Agosto', 'Septiembre', 
+        'Octubre', 'Noviembre', 'Diciembre'
+    ];
+
+    const myChart = new Chart(ctx, {
+        type: 'bar', // Puedes cambiar el tipo de gráfica si lo deseas
+        data: {
+            labels: meses,
+            datasets: [{
+                label: 'Ganancias Mensuales',
+                data: gananciasMensuales,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>

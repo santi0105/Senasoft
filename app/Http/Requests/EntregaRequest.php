@@ -25,6 +25,7 @@ class EntregaRequest extends FormRequest
 			'id_alquileres' => 'required',
 			'valorPagar' => 'required',
 			'tarifaAdicional' => 'required',
+			'totalPagar' => 'required',
         ];
     }
 }

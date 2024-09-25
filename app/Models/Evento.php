@@ -40,5 +40,8 @@ class Evento extends Model
     {
         return $this->belongsTo(\App\Models\User::class, 'id_users', 'id');
     }
-    
+    public function centro()
+    {
+        return $this->belongsTo(\App\Models\Centro::class, 'id_centros', 'id');
+    }
 }

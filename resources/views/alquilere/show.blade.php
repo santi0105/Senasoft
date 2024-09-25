@@ -6,48 +6,61 @@
 
 @section('content')
     <section class="content container-fluid">
-        <div class="row">
-            <div class="col-md-12">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
-                        <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Alquilere</span>
-                        </div>
-                        <div class="float-left">
-                            <a class="btn btn-primary btn-sm" href="{{ route('entregas.create') }}"> {{ __('Confirmar Entrega') }}</a>
-                            @foreach ($alquileres as $alquilere)
-                                <a class="btn btn-sm btn-success" href="{{ route('entregas.create', $alquilere->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Confirrrr') }}</a>
-                            @endforeach 
-                        </div>
-                        <div class="float-right">
-                            <a class="btn btn-primary btn-sm" href="{{ route('alquileres.index') }}"> {{ __('Back') }}</a>
-                        </div>
+                    <div class="card-header text-center" style="background-color: #4CAF50; color: white;">
+                        <span class="card-title">{{ __('Detalles del Alquiler') }}</span>
                     </div>
 
-                    <div class="card-body bg-white">
-                        
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Fechainicial:</strong>
-                                    {{ $alquilere->fechaInicial }}
-                                    {{ $alquilere->user->id}}
-                                </div>
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Fechafinal:</strong>
-                                    {{ $alquilere->fechaFinal }}
-                                </div>
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Tpalquiler:</strong>
-                                    {{ $alquilere->tpAlquiler }}
-                                </div>
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Id Users:</strong>
-                                    {{ $alquilere->id_users }}
-                                </div>
-                                <div class="form-group mb-2 mb20">
-                                    <strong>Id Bicicletas:</strong>
-                                    {{ $alquilere->id_bicicletas }}
-                                </div>
+                    <div class="card-body bg-light">
+                        <div class="text-center">
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#alquilerModal">
+                                {{ __('Ver Detalles del Alquiler') }}
+                            </button>
+                        </div>
 
+                        <!-- Modal -->
+                        <div class="modal fade" id="alquilerModal" tabindex="-1" aria-labelledby="alquilerModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header" style="background-color: #4CAF50; color: white;">
+                                        <h5 class="modal-title" id="alquilerModalLabel">{{ __('Detalles del Alquiler') }}</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group mb-2">
+                                            <strong>{{ __('Fecha Inicial:') }}</strong>
+                                            <p>{{ $alquilere->fechaInicial }}</p>
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <strong>{{ __('Fecha Final:') }}</strong>
+                                            <p>{{ $alquilere->fechaFinal }}</p>
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <strong>{{ __('Tipo de Alquiler:') }}</strong>
+                                            <p>{{ $alquilere->tpAlquiler }}</p>
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <strong>{{ __('Usuario:') }}</strong>
+                                            <p>{{ $alquilere->user->name }}</p>
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <strong>{{ __('Bicicleta Alquilada:') }}</strong>
+                                            <p>{{ $alquilere->bicicleta->marca }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('Cerrar') }}</button>
+                                        <a class="btn btn-primary" href="{{ route('entregas.create', $alquilere->id) }}">{{ __('Confirmar Entrega') }}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center mt-3">
+                            <a class="btn btn-primary" href="{{ route('alquileres.index') }}">{{ __('Volver') }}</a>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -15,7 +15,15 @@
                             <span id="card_title">
                                 {{ __('Eventos') }}
                             </span>
-
+                            <div class="float-center">
+                                <form action="{{ route('eventos.index') }}" method="get">
+                                           <div class="btn-group">
+                                                                 <input type="text" name="busqueda" class="form-control">
+                                                                 <input type="submit" value="Buscar..." class="btn btn-primary">
+                                                             </div>
+                                                         </form>
+                                                       </div>
+                         
                              <div class="float-right">
                                 <a href="{{ route('eventos.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}
@@ -41,7 +49,8 @@
 									<th >Fecha</th>
 									<th >Hora</th>
 									<th >Lugar</th>
-									<th >Id Users</th>
+									<th >usuario</th>
+									<th >regional</th>
 
                                         <th></th>
                                     </tr>
@@ -55,7 +64,8 @@
 										<td >{{ $evento->fecha }}</td>
 										<td >{{ $evento->hora }}</td>
 										<td >{{ $evento->lugar }}</td>
-										<td >{{ $evento->id_users }}</td>
+										<td >{{ $evento->user->name }}</td>
+										<td >{{ $evento->user->regional}}</td>
 
                                             <td>
                                                 <form action="{{ route('eventos.destroy', $evento->id) }}" method="POST">

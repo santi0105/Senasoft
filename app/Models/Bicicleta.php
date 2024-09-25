@@ -50,5 +50,10 @@ class Bicicleta extends Model
     {
         return $this->hasMany(\App\Models\Alquilere::class, 'id', 'id_bicicletas');
     }
-    
+
+    public function reseñas()
+    {
+        return $this->hasMany(Reseña::class);
+    }
+        
 }

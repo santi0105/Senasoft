@@ -32,6 +32,37 @@
                     </div>
                 </div>
             </div>
+            <div class="container">
+                <h1>Cantidad de bicicletas alquiladas por mes</h1>
+                <canvas id="alquileresChart"></canvas>
+            </div>
         </div>
     </section>
+@endsection
+
+@section('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('alquileresChart').getContext('2d');
+        const alquileresChart = new Chart(ctx, {
+            type: 'bar', // Tipo de gráfico
+            data: {
+                labels: {!! json_encode($labels) !!}, // Etiquetas de los meses
+                datasets: [{
+                    label: 'Alquileres',
+                    data: {!! json_encode($data) !!}, // Datos de alquileres
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
 @endsection

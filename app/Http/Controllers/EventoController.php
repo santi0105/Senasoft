@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Evento;
+use App\Models\Centro;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\EventoRequest;
@@ -17,9 +18,18 @@ class EventoController extends Controller
     public function index(Request $request): View
     {
         $eventos = Evento::paginate();
-
-        return view('evento.index', compact('eventos'))
-            ->with('i', ($request->input('page', 1) - 1) * $eventos->perPage());
+        $busqueda= $request->busqueda;
+        $centro = Centro::where('regional','LIKE','%'.$busqueda.'%')
+        ->orWhere('nombre','LIKE','%'.$busqueda.'%')
+        ->latest('id')
+        ->paginate(2);
+        
+        $data=[
+            'centros'=>$centro,
+            'busqueda'=>$busqueda,
+        ];
+        return view('evento.index',$data,compact('eventos','centro'))
+            ->with('i');
     }
 
     /**

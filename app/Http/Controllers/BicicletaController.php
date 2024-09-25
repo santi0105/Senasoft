@@ -59,8 +59,13 @@ class BicicletaController extends Controller
      */
     public function show($id): View
     {
-        $bicicleta = Bicicleta::find($id);
-
+        // Cargar la bicicleta y el centro asociado
+        $bicicleta = Bicicleta::with('centro')->find($id);
+        
+        if (!$bicicleta) {
+            abort(404, 'Bicicleta no encontrada');
+        }
+    
         return view('bicicleta.show', compact('bicicleta'));
     }
 
