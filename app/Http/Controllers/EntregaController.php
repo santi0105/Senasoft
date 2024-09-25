@@ -23,22 +23,28 @@ class EntregaController extends Controller
             ->with('i', ($request->input('page', 1) - 1) * $entregas->perPage());
     }
 
+    
+
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): View
+    public function create(Request $request): View
     {
-        $alquileres = Alquilere::all();
         $entrega = new Entrega();
+        $idAlquileres = $request->input('id_alquileres');
 
-        return view('entrega.create', compact('entrega','alquileres'));
+        return view('entrega.create', compact('entrega','idAlquileres'));
     }
+
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(EntregaRequest $request): RedirectResponse
     {
+        $data = $request->validated();
+        $data['id_alquileres'] = $request->input('id_alquileres');
+
         Entrega::create($request->validated());
 
         return Redirect::route('entregas.index')

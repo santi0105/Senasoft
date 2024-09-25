@@ -28,24 +28,30 @@ class AlquilereController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): View
+    public function create(Request $request): View
     {
         $alquilere = new Alquilere();     
-       $bicicletas= Bicicleta::all();
+       $idBicicletas = $request->input('id_bicicletas');
         $users= User::all();
-        return view('alquilere.create',compact('alquilere','users','bicicletas'));
+        return view('alquilere.create',compact('alquilere','users','idBicicletas'));
     }
+
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(AlquilereRequest $request): RedirectResponse
     {
-        Alquilere::create($request->validated());
+        $data = $request->validated();
+        $data['id_bicicletas'] = $request->input('id_bicicletas');
+
+        Alquilere::create($data);
         
         return Redirect::route('alquileres.index')
             ->with('success', 'Alquilere created successfully.');
     }
+
+
 
     /**
      * Display the specified resource.

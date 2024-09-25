@@ -59,7 +59,7 @@
                                                 <form action="{{ route('alquileres.destroy', $alquilere->id) }}" method="POST">
                                                     <a class="btn btn-sm btn-primary " href="{{ route('alquileres.show', $alquilere->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
                                                     <a class="btn btn-sm btn-success" href="{{ route('alquileres.edit', $alquilere->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('entregas.create', $alquilere->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Entregar') }}</a>
+                                                    <a href="{{ route('entregas.create', ['id_alquileres' => $alquilere->id]) }}" class="btn btn-primary">Entregar</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>

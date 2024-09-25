@@ -3,12 +3,8 @@
         
         <div class="form-group mb-2 mb20">
             
-                <label for="id_alquileres" class="form-label">{{ __('Id Alquileres') }}</label>
-                <select name="id_alquileres" id="id_alquileres" class="form-control @error('id_alquileres') is-invalid @enderror">
-                    @foreach ($alquileres as $alquilere)
-                        <option value="{{ $alquilere->id }}">{{ $alquilere->id }}</option>
-                    @endforeach
-                </select>
+                 <!-- Campo oculto para id_alquiler -->
+                 <input type="hidden" name="id_alquileres" value="{{ $idAlquileres }}">
                 {!! $errors->first('id_alquileres', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
             
         </div>
@@ -35,6 +31,7 @@
             @php
                 }
             @endphp
+           
             <input type="text" name="tarifaAdicional" class="form-control @error('tarifaAdicional') is-invalid @enderror" value="{{ old('tarifaAdicional', $entrega?->tarifaAdicional) }}" id="tarifa_adicional" placeholder="Tarifaadicional">
             {!! $errors->first('tarifaAdicional', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>

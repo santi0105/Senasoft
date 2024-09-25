@@ -31,14 +31,8 @@
         </div>
         <div class="form-group mb-2 mb20">
             <label for="tp_alquiler" class="form-label">{{ __('Bicicletas') }}</label>
-           
-            <select class="form-select" aria-label="Default select example" name="id_bicicletas">
-                @foreach ($bicicletas as $bicicleta)
-               
-                <option value="{{ $bicicleta->id }}"> {{ $bicicleta->marca }}  -  {{ $bicicleta->centro->nombre }}</option>
-                @endforeach
-              </select>
-   
+            <!-- Campo oculto para id_alquiler -->
+            <input type="text" name="id_bicicletas" value="{{ $idBicicletas }}">  
          
             {!! $errors->first('id_bicicletas', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>

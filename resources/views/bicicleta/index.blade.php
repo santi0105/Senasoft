@@ -47,7 +47,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ $bicicleta->marca }}</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="{{ route('alquileres.create' , $bicicleta->id) }}" class="btn btn-primary">Alquilar</a>
+                        <a href="{{ route('alquileres.create', ['id_bicicletas' => $bicicleta->id]) }}" class="btn btn-primary">Alquilar</a>
                         @php
                             $rol = Auth::user()->id_roles;
                             if($rol == 1){
