@@ -85,6 +85,7 @@
                         <h5 class="card-title">{{ $evento->nombreEvento }}</h5>
                         <p class="card-text">{{ $evento->fecha }}  -  {{ $evento->hora }}</p>
                         <a href="{{ route('eventos.create') }}" class="btn btn-primary">Ver Evento</a>
+                        <a href="{{ route('asistencias.create', ['id_eventos' => $evento->id]) }}" class="btn btn-primary">Asistir</a>
                     </div>
             </div>
         @endforeach   

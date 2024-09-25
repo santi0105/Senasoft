@@ -34,7 +34,7 @@
             <!-- Campo oculto para id_alquiler -->
             <input type="text" name="id_bicicletas" value="{{ $idBicicletas }}">  
          
-            {!! $errors->first('id_bicicletas', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+            
         </div>
 
     </div>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('template_title')
-    Estadisticas
+    Asistencias
 @endsection
 
 @section('content')
@@ -13,11 +13,11 @@
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
-                                {{ __('Estadisticas') }}
+                                {{ __('Asistencias') }}
                             </span>
 
                              <div class="float-right">
-                                <a href="{{ route('estadisticas.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                <a href="{{ route('asistencias.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                                   {{ __('Create New') }}
                                 </a>
                               </div>
@@ -36,24 +36,26 @@
                                     <tr>
                                         <th>No</th>
                                         
-									<th >Id Alquileres</th>
-									<th >Id Entregas</th>
+									<th >Asiste</th>
+									<th >Id Users</th>
+									<th >Id Eventos</th>
 
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($estadisticas as $estadistica)
+                                    @foreach ($asistencias as $asistencia)
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-										<td >{{ $estadistica->id_alquileres }}</td>
-										<td >{{ $estadistica->id_entregas }}</td>
+										<td >{{ $asistencia->asiste }}</td>
+										<td >{{ $asistencia->id_users }}</td>
+										<td >{{ $asistencia->id_eventos }}</td>
 
                                             <td>
-                                                <form action="{{ route('estadisticas.destroy', $estadistica->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('estadisticas.show', $estadistica->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('estadisticas.edit', $estadistica->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
+                                                <form action="{{ route('asistencias.destroy', $asistencia->id) }}" method="POST">
+                                                    <a class="btn btn-sm btn-primary " href="{{ route('asistencias.show', $asistencia->id) }}"><i class="fa fa-fw fa-eye"></i> {{ __('Show') }}</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('asistencias.edit', $asistencia->id) }}"><i class="fa fa-fw fa-edit"></i> {{ __('Edit') }}</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;"><i class="fa fa-fw fa-trash"></i> {{ __('Delete') }}</button>
@@ -63,22 +65,11 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                          
-                        </div>
-                        <div class="card-body">
-
-                            <h1>{{ $chart->options['chart_title'] }}</h1>
-                            {!! $chart->renderHtml() !!}
-        
                         </div>
                     </div>
                 </div>
-                {!! $estadisticas->withQueryString()->links() !!}
+                {!! $asistencias->withQueryString()->links() !!}
             </div>
         </div>
     </div>
-@endsection
-@section('scripts')
-{!! $chart->renderChartJsLibrary() !!}
-{!! $chart->renderJs() !!}
 @endsection

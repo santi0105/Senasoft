@@ -40,7 +40,7 @@ class BicicletaController extends Controller
         $bicicleta = new Bicicleta();
         $bicicleta->marca = $request->marca;
         $bicicleta->color = $request->color;
-        $bicicleta->estado = $request->estado;
+        $bicicleta->estado = 'Activa';
         $bicicleta->precioHora = $request->precioHora;
         $bicicleta->id_centros = $request->id_centros;
         

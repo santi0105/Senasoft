@@ -44,9 +44,16 @@ class AlquilereController extends Controller
     {
         $data = $request->validated();
         $data['id_bicicletas'] = $request->input('id_bicicletas');
-
-        Alquilere::create($data);
-        
+    
+        // Crear el alquiler{{  }}
+        $alquilere = Alquilere::create($data);
+    
+        // Buscar la bicicleta y actualizar su estado
+        $bicicleta = Bicicleta::find($data['id_bicicletas']);
+        if ($bicicleta && $bicicleta->estado === 'Activa') {
+            $bicicleta->update(['estado' => 'Inactiva']);{{  }}
+        }
+    
         return Redirect::route('alquileres.index')
             ->with('success', 'Alquilere created successfully.');
     }

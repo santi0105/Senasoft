@@ -1,4 +1,5 @@
-    <div class="row padding-1 p-1">
+
+   <div class="row padding-1 p-1">
     <div class="col-md-12">
         
         <div class="form-group mb-2 mb20">
@@ -9,35 +10,49 @@
             
         </div>
         <div class="form-group mb-2 mb20">
-            <label for="valor_pagar" class="form-label">{{ __('Valorpagar') }}</label>
-            <input type="text" name="valorPagar" class="form-control @error('valorPagar') is-invalid @enderror" value="{{ old('valorPagar', $entrega?->valorPagar) }}" id="valor_pagar" placeholder="Valorpagar">
-            {!! $errors->first('valorPagar', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+            <label for="valor_pagar" class="form-label">{{ __('Valor a Pagar') }}</label>
+            <input type="number" name="valorPagar" class="form-control" id="valor_pagar" placeholder="Ingrese el valor a pagar" oninput="calcularDescuento()">
         </div>
+        
         <div class="form-group mb-2 mb20">
-            <label for="tarifa_adicional" class="form-label">{{ __('Tarifaadicional') }}</label>
-            @php
-                $estrato = Auth::user()->estrato;
-                if($estrato == 1 OR $estrato == 2){
-            @endphp
-                    <input type="text" name="tarifaAdicional" class="form-control @error('tarifaAdicional') is-invalid @enderror" value="10%" id="tarifa_adicional" >
-            @php
-                }else if($estrato == 3 OR $estrato == 4){
-            @endphp
-                <input type="text" name="tarifaAdicional" class="form-control @error('tarifaAdicional') is-invalid @enderror" value="5%" id="tarifa_adicional" >
-            @php
-                }else{
-            @endphp
-                    <input type="text" name="tarifaAdicional" class="form-control @error('tarifaAdicional') is-invalid @enderror" value="0%" id="tarifa_adicional" >
-            @php
-                }
-            @endphp
-           
-            <input type="text" name="tarifaAdicional" class="form-control @error('tarifaAdicional') is-invalid @enderror" value="{{ old('tarifaAdicional', $entrega?->tarifaAdicional) }}" id="tarifa_adicional" placeholder="Tarifaadicional">
-            {!! $errors->first('tarifaAdicional', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+            <label for="tarifa_adicional" class="form-label">{{ __('Descuento') }}</label>
+            <input type="text" name="tarifaAdicional" class="form-control" id="tarifa_adicional" readonly>
         </div>
-
-    </div>
+        
+        <div class="form-group mb-2 mb20">
+            <label for="total_final" class="form-label">{{ __('Total a Pagar') }}</label>
+            <input type="text" name="tarifaAdicional" class="form-control" id="total_final" readonly>
+        </div>
+        
     <div class="col-md-12 mt20 mt-2">
         <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
     </div>
 </div>
+<script>
+    function calcularDescuento() {
+        // Obtener el valor a pagar
+        const valorPagar = parseFloat(document.getElementById('valor_pagar').value) || 0;
+
+        // Definir el porcentaje de descuento según el estrato
+        const estrato = {{ Auth::user()->estrato }}; // Puedes pasarlo desde PHP
+        let descuentoPorcentaje = 0;
+
+        if (estrato == 1 || estrato == 2) {
+            descuentoPorcentaje = 0.10; // 10%
+        } else if (estrato == 3 || estrato == 4) {
+            descuentoPorcentaje = 0.05; // 5%
+        } else {
+            descuentoPorcentaje = 0.00; // 0%
+        }
+
+        // Calcular el descuento
+        const descuento = valorPagar * descuentoPorcentaje;
+
+        // Actualizar el campo de descuento
+        document.getElementById('tarifa_adicional').value = descuento.toFixed(2);
+
+        // Calcular el total a pagar
+        const totalFinal = valorPagar - descuento;
+        document.getElementById('total_final').value = totalFinal.toFixed(2);
+    }
+</script>

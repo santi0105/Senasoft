@@ -18,8 +18,8 @@ class EstadisticaController extends Controller
     public function index(Request $request): View
     {
         $chart_options = [
-            'chart_title' => 'Ganacias mensuales',
-            'chart_type' => 'line',
+            'chart_title' => 'Alquileres mensuales',
+            'chart_type' => 'bar',
             'report_type' => 'group_by_relationship',
             'model' => 'App\Models\Alquilere',
         

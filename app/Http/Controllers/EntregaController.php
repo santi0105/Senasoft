@@ -32,7 +32,7 @@ class EntregaController extends Controller
     {
         $entrega = new Entrega();
         $idAlquileres = $request->input('id_alquileres');
-
+      
         return view('entrega.create', compact('entrega','idAlquileres'));
     }
 
@@ -41,15 +41,30 @@ class EntregaController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(EntregaRequest $request): RedirectResponse
-    {
-        $data = $request->validated();
-        $data['id_alquileres'] = $request->input('id_alquileres');
+{
+    $data = $request->validated();
+    $data['id_alquileres'] = $request->input('id_alquileres');
 
-        Entrega::create($request->validated());
+    // Crear la entrega
+    $entrega = Entrega::create($data);
 
-        return Redirect::route('entregas.index')
-            ->with('success', 'Entrega created successfully.');
+    // Encontrar el alquiler asociado
+    $alquiler = Alquilere::find($data['id_alquileres']);
+    
+    if ($alquiler) {
+        // Buscar la bicicleta asociada al alquiler
+        $bicicleta = Bicicleta::find($alquiler->id_bicicletas);
+        
+        // Actualizar el estado de la bicicleta a activa
+        if ($bicicleta) {
+            $bicicleta->update(['estado' => 'Activa']);
+        }
     }
+
+    return Redirect::route('entregas.index')
+        ->with('success', 'Entrega created successfully and bicycle activated.');
+}
+
 
     /**
      * Display the specified resource.
