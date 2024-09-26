@@ -1,4 +1,5 @@
-<x-guest-layout>
+<!-- Archivo generado por laravel para autenticacion de diferentes requerimientos de seguridad --><
+x-guest-layout>
     <form method="POST" action="{{ route('register') }}">
         @csrf
 

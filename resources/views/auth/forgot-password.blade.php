@@ -1,3 +1,4 @@
+<!-- Archivo generado por laravel para autenticacion de diferentes requerimientos de seguridad -->
 <x-guest-layout>
     <div class="mb-4 text-sm text-gray-600">
         {{ __('¿Olvidaste tu contraseña? No hay problema. Solo indícanos tu dirección de correo electrónico y te enviaremos un enlace para restablecer la contraseña que te permitirá elegir una nueva.') }}

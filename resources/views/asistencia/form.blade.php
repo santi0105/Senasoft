@@ -1,3 +1,5 @@
+<!-- Formulario para asistencias, se usa de acuerdo a las necesidades o requerimientos del sistema. estructura basica html, php laravel -->
+
 <div class="row padding-1 p-1">
     <div class="col-md-12">
         

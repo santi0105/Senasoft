@@ -1,3 +1,4 @@
+<!-- archivo encargado de manejar datos al controller adecuado -->
 @extends('layouts.app')
 
 @section('template_title')

@@ -4,6 +4,7 @@
     {{ $alquilere->name ?? __('Show') . " " . __('Alquilere') }}
 @endsection
 
+<!-- Archivo que se usa para mostrar la informacion que querramos -->
 @section('content')
     <section class="content container-fluid">
         <div class="row justify-content-center">

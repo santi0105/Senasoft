@@ -1,3 +1,4 @@
+<!-- Este modulo no se IMPLEMENTO -->
 @extends('layouts.app')
 
 @section('template_title')

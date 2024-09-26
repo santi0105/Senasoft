@@ -22,7 +22,7 @@ class ContactanosMailable extends Mailable
     }
 
     /**
-     * Get the message envelope.
+     * trae el asunto del correo.
      */
     public function envelope(): Envelope
     {
@@ -32,17 +32,17 @@ class ContactanosMailable extends Mailable
     }
 
     /**
-     * Get the message content definition.
+     * trae el cuerpo del mensaje.
      */
     public function content(): Content
     {
         return new Content(
-            view: 'email.alquiler',
+            view: 'email.alquiler', //retorna la vista que contiene el cuerpo del correo
         );
     }
 
     /**
-     * Get the attachments for the message.
+     * funciones para añadir recursos
      *
      * @return array<int, \Illuminate\Mail\Mailables\Attachment>
      */

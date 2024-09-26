@@ -1,3 +1,4 @@
+<!-- Formulario necesario para cumplir requerimientos del proyecto. Estructura basica html, php laravel -->
 <div class="row padding-1 p-1">
     <div class="col-md-12">
         
@@ -21,6 +22,10 @@
             <strong>Precio x Hora</strong>
             <input type="text" name="precioHora" class="form-control @error('precioHora') is-invalid @enderror" value="{{ old('precioHora', $bicicleta?->precioHora) }}" id="precio_hora" placeholder="Preciohora">
             {!! $errors->first('precioHora', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
+        </div>
+        <div class="form-group mb-2 mb20">
+            
+            <input type="hidden" name="estado" id="estado" value="estado">
         </div>
         <div class="form-group mb-2 mb20">
             <strong>Centro</strong>

@@ -1,3 +1,4 @@
+<!-- Estructura del correo que se usa para la confirmacion del alquiler de bicicleta por parte del usuario -->
 <!DOCTYPE html>
 <html lang="es">
 <head>

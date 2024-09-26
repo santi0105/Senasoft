@@ -14,6 +14,7 @@
                         <span class="card-title">{{ __('Registrar') }} Asistencia</span>
                     </div>
                     <div class="card-body bg-white">
+<!-- con el include evitamos quemadera de codigo y la action simplemente va al controlador correspondiente de la accion -->
                         <form method="POST" action="{{ route('asistencias.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf
 

@@ -4,6 +4,7 @@
     {{ $bicicleta->marca ?? __('Show') . " " . __('Bicicleta') }}
 @endsection
 
+<!-- Archivo de vista de informacion -->
 @section('content')
     <section class="content container-fluid">
         <div class="row">

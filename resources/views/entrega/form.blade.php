@@ -1,3 +1,4 @@
+<!-- Formulario empleado para evitar quema de codigo. aca hace tratamiento de ID de tablas anteriormente relacionadas -->
 <div class="row padding-1 p-1">
     <div class="col-md-12">
         
@@ -38,7 +39,7 @@
         const valorPagar = parseFloat(document.getElementById('valor_pagar').value) || 0;
 
         // Definir el porcentaje de descuento según el estrato
-        const estrato = {{ Auth::user()->estrato }}; // Puedes pasarlo desde PHP
+        const estrato = {{ Auth::user()->estrato }}; 
         let descuentoPorcentaje = 0;
 
         if (estrato == 1 || estrato == 2) {
@@ -49,13 +50,13 @@
             descuentoPorcentaje = 0.00; // 0%
         }
 
-        // Calcular el descuento
+        // Calcula el descuento
         const descuento = valorPagar * descuentoPorcentaje;
 
-        // Actualizar el campo de descuento
+        // Actualiza el campo de descuento
         document.getElementById('tarifa_adicional').value = descuento.toFixed(2);
 
-        // Calcular el total a pagar
+        // Calcula el total a pagar
         const totalFinal = valorPagar - descuento;
         document.getElementById('total_final').value = totalFinal.toFixed(2);
     }

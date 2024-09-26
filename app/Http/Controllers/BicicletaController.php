@@ -13,7 +13,7 @@ use Illuminate\View\View;
 class BicicletaController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * mostrar una lista del recurso
      */
     public function index(Request $request): View
     {
@@ -24,7 +24,7 @@ class BicicletaController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * crea un nuevo recurso.
      */
     public function create(): View
     {
@@ -35,7 +35,7 @@ class BicicletaController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * almacena un nuevo recurso.
      */
     public function store(BicicletaRequest $request): RedirectResponse
     {
@@ -57,7 +57,7 @@ class BicicletaController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * muestra los recursos especificos.
      */
     public function show($id): View
     {
@@ -72,7 +72,7 @@ class BicicletaController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     *editar el recurso especifico.
      */
     public function edit($id): View
     {
@@ -82,7 +82,7 @@ class BicicletaController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     *actualizar el recurso.
      */
     public function update(BicicletaRequest $request, Bicicleta $bicicleta): RedirectResponse
     {

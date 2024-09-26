@@ -4,6 +4,8 @@
     Centros
 @endsection
 
+
+<!-- Archivo principal del modulo centro. estructura html, php laravel -->
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -50,9 +52,7 @@
                                                     <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#mapModal{{ $centro->id }}">
                                                         <i class="fa fa-fw fa-eye"></i> {{ __('Ubicación') }}
                                                     </button>
-                                                    <a class="btn btn-sm btn-success" href="{{ route('centros.edit', $centro->id) }}">
-                                                        <i class="fa fa-fw fa-edit"></i> {{ __('Actualizar') }}
-                                                    </a>
+
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm" 

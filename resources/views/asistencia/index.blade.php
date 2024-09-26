@@ -4,6 +4,7 @@
     Asistencias
 @endsection
 
+<!-- Archivo principal del modulo asistencias. estructura html, php laravel -->
 @section('content')
     <div class="container-fluid">
         <div class="row">

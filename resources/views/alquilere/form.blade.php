@@ -1,3 +1,5 @@
+<!-- Este es el formulario el cual se emplea y se incluye en las vistas que querramos. codigo html, php laravel -->
+
 <div class="container text-center">
     <div class="row p-3">
         <div class="col-md-12">

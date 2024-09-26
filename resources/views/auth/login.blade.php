@@ -1,3 +1,4 @@
+<!-- Archivo generado por laravel para autenticacion de diferentes requerimientos de seguridad -->
 <x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />

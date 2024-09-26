@@ -40,7 +40,7 @@ class EntregaController extends Controller
         $inicio = Carbon::create($anio, $i, 1);
         $fin = $inicio->copy()->endOfMonth();
 
-        $gananciasMensuales[$i] = Entrega::whereBetween('created_at', [$inicio, $fin])
+        $gananciasMensuales[$i] = Entrega::whereBetween('created_at', [$inicio, $fin]) //Se realiza una consulta en la BD para comparar fechas
             ->sum('totalPagar');
     }
 

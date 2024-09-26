@@ -26,7 +26,7 @@ class AlquilereController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     *crea un nuevo recurso
      */
     public function create(Request $request): View
     {
@@ -38,7 +38,7 @@ class AlquilereController extends Controller
 
 
     /**
-     * Store a newly created resource in storage.
+     * Almacene un recurso recién creado en el almacenamiento.
      */
     public function store(AlquilereRequest $request): RedirectResponse
     {
@@ -61,20 +61,21 @@ class AlquilereController extends Controller
 
 
     /**
-     * Display the specified resource.
+     * muestre los recursos
      */ 
 
    
 
     public function show($id): View
     {
-        $alquileres = Alquilere::all();
-        $alquilere = Alquilere::find($id);
-        return view('alquilere.show', compact('alquilere','alquileres'));
+        $alquileres = Alquilere::all(); //se crea una instancia con el modelo y traemos todos los datos con el metodo all()
+        $alquilere = Alquilere::find($id); // nuevamente llamamos el modelo y nos traemos el id
+        return view('alquilere.show', compact('alquilere','alquileres')); //redirigimos a la vista correspondiente con las variables instanciadas en el compact
     }
 
     /**
-     * Show the form for editing the specified resource.
+    
+     *  editar el recurso especifico
      */
     public function edit(Request $request, $id): View
     {
@@ -85,7 +86,8 @@ class AlquilereController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+    
+     * Actualizamos el recurso en el paquete
      */
     public function update(AlquilereRequest $request, Alquilere $alquilere): RedirectResponse
     {
