@@ -2,7 +2,7 @@
     <div class="col-md-12">
         
         <div class="form-group mb-2 mb20">
-            <label for="asiste" class="form-label">{{ __('Asiste') }}</label>
+            <strong>Confirmar</strong>
             <select name="asiste" id="asiste" class="form-control @error('asiste') is-invalid @enderror">
                 <option value="asiste">Asiste</option>
                 <option value="no asiste">No Asiste</option>
@@ -10,7 +10,7 @@
             {!! $errors->first('asiste', '<div class="invalid-feedback" role="alert"><strong>:message</strong></div>') !!}
         </div>
         <div class="form-group mb-2 mb20">
-            <label for="id_users" class="form-label">{{ __('Usuario') }}</label>
+            <label for="id_users" class="form-label">{{ __('Datos de Asistencia') }}</label>
             <input type="hidden" name="id_users" class="form-control @error('id_users') is-invalid @enderror" value="{{ Auth::user()->id }}" id="id_users" placeholder="Id Users">
             <input type="text" class="form-control @error('id_users') is-invalid @enderror" value="{{ Auth::user()->name }}" disabled placeholder="Nombre"><br>
             <input type="text" class="form-control @error('id_users') is-invalid @enderror" value="{{ Auth::user()->apellido }}" disabled placeholder="Apellido"><br>
@@ -25,6 +25,6 @@
 
     </div>
     <div class="col-md-12 mt20 mt-2">
-        <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
+        <button type="submit" class="btn btn-primary">{{ __('Asistir') }}</button>
     </div>
 </div>

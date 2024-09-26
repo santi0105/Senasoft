@@ -54,8 +54,8 @@ class AlquilereController extends Controller
             $bicicleta->update(['estado' => 'Inactiva']);{{  }}
         }
     
-        return Redirect::route('alquileres.index')
-            ->with('success', 'Alquilere created successfully.');
+        return Redirect::route('bicicletas.index')
+            ->with('success', 'Alquiler Realizado Exitosamente.');
     }
 
 

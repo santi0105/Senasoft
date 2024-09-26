@@ -8,8 +8,8 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-header">
+                <div class="mt-3 card">
+                    <div class="card-header" style="background-color: #4CAF50; color: white;">
                         <div style="display: flex; justify-content: space-between; align-items: center;">
 
                             <span id="card_title">
@@ -21,7 +21,7 @@
                                 if($rol == 1){
                             @endphp
                              <div class="float-right">
-                                <a href="{{ route('bicicletas.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
+                                <a href="{{ route('bicicletas.create') }}" class="btn btn-light btn-sm float-right"  data-placement="left">
                                   {{ __('Añadir Nueva Bicicleta') }}
                                 </a>
                               </div>
@@ -42,7 +42,7 @@
 
                     <div class="row m-4">
             @foreach ($bicicletas as $bicicleta)
-            <div class="text-center card m-1 border-2 {{ $bicicleta->estado == 'Inactiva' ? 'border-danger' : '' }}" style="width: 15rem;">    
+            <div class="text-center card mr-3 border-4 {{ $bicicleta->estado == 'Inactiva' ? 'border-danger' : ($bicicleta->estado == 'Activa' ? 'border-success' : '') }}" style="width: 15rem;">    
                 <img src="{{ asset('storage/' . $bicicleta->img) }}" class="card-img-top" alt="..." style="height: 200px; object-fit: cover; margin-top:10px"><br>
                 <div class="card-body">
                     <h5 class="card-title">Bicicleta <span class="badge text-bg-dark">{{ $bicicleta->marca }}</span></h5>
@@ -50,9 +50,11 @@
                     <span class="badge text-bg-primary">{{ $bicicleta->precioHora }}</span><br>
                     <p class="card-text">REGIONAL SENA:</p>
                     <span class="badge text-bg-primary">{{ $bicicleta->centro->regional }}</span><br><br>
-                    <div class="d-grid ">
-                        <a href="{{ route('alquileres.create', ['id_bicicletas' => $bicicleta->id]) }}" class="btn btn-success">Alquilar</a><br>
-                    </div>           
+                    @if ($bicicleta->estado == 'Activa')
+                        <div class="d-grid ">
+                            <a href="{{ route('alquileres.create', ['id_bicicletas' => $bicicleta->id]) }}" class="btn btn-success">Alquilar</a><br>
+                        </div>
+                    @endif          
                     @php
                         $rol = Auth::user()->id_roles;
                         if($rol == 1){

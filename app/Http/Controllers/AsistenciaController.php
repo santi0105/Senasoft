@@ -44,8 +44,8 @@ class AsistenciaController extends Controller
 
         Asistencia::create($data);
 
-        return Redirect::route('asistencias.index')
-        ->with('success', 'Asistencia created successfully.');
+        return Redirect::route('eventos.index')
+        ->with('success', 'Asistencia Registrada Correctamente.');
     }
 
     /**
@@ -76,7 +76,7 @@ class AsistenciaController extends Controller
         $asistencia->update($request->validated());
 
         return Redirect::route('asistencias.index')
-            ->with('success', 'Asistencia updated successfully');
+            ->with('success', 'Asistencia Actualizada Correctamente');
     }
 
     public function destroy($id): RedirectResponse
@@ -84,6 +84,6 @@ class AsistenciaController extends Controller
         Asistencia::find($id)->delete();
 
         return Redirect::route('asistencias.index')
-            ->with('success', 'Asistencia deleted successfully');
+            ->with('success', 'Asistencia Eliminada Correctamente');
     }
 }

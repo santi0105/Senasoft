@@ -6,14 +6,17 @@
 
 @section('content')
     <section class="content container-fluid">
-        <div class="row">
-            <div class="col-md-12">
+        <div class="text-center row justify-content-center">
+            <div class=" col-md-6">
 
-                <div class="card card-default">
-                    <div class="card-header">
-                        <span class="card-title">{{ __('Create') }} Bicicleta</span>
+                <div class="card mt-3 card-default">
+                    <div class="card-header" style="background-color: #4CAF50; color: white;">
+                        <span class="card-title">{{ __('Añadir') }} Bicicleta</span>
+                        <div class="float-right">
+                            <a class="btn btn-light btn-sm" href="{{ route('bicicletas.index') }}"> {{ __('Atrás') }}</a>
+                        </div>
                     </div>
-                    <div class="card-body bg-white">
+                    <div class="text-center card-body bg-white">
                         <form method="POST" action="{{ route('bicicletas.store') }}"  role="form" enctype="multipart/form-data">
                             @csrf
 

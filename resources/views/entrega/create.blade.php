@@ -6,12 +6,12 @@
 
 @section('content')
     <section class="content container-fluid">
-        <div class="row">
-            <div class="col-md-12">
+        <div class="text-center row justify-content-center">
+            <div class="col-md-4">
 
-                <div class="card card-default">
-                    <div class="card-header">
-                        <span class="card-title">{{ __('Realizar') }} Entrega</span>
+                <div class="mt-4 card card-default">
+                    <div class="card-header" style="background-color: #4CAF50; color: white;">
+                        <span class="card-title">{{ __('Confirmar') }} Entrega</span>
                     </div>
                     <div class="card-body bg-white">
                         <form method="POST" action="{{ route('entregas.store', $entrega->id) }}"  role="form" enctype="multipart/form-data">   

@@ -17,19 +17,24 @@ class EventoController extends Controller
      */
     public function index(Request $request): View
     {
-        $eventos = Evento::paginate();
-        $busqueda= $request->busqueda;
-        $centro = Centro::where('regional','LIKE','%'.$busqueda.'%')
-        ->orWhere('nombre','LIKE','%'.$busqueda.'%')
-        ->latest('id')
-        ->paginate(2);
-        
-        $data=[
-            'centros'=>$centro,
-            'busqueda'=>$busqueda,
-        ];
-        return view('evento.index',$data,compact('eventos','centro'))
-            ->with('i');
+        // Obtener la búsqueda desde el request
+        $busqueda = $request->input('busqueda', '');
+    
+        // Aplicar filtro si existe la búsqueda
+        if ($busqueda) {
+            $eventos = Evento::where('lugar', 'LIKE', '%' . $busqueda . '%')
+                ->latest('id')
+                ->paginate(10); // Ajusta el número de eventos por página según tus necesidades
+        } else {
+            // Si no hay búsqueda, mostrar todos los eventos con paginación
+            $eventos = Evento::latest('id')->paginate(10);
+        }
+    
+        // Pasar datos a la vista
+        return view('evento.index', [
+            'eventos' => $eventos,
+            'busqueda' => $busqueda,
+        ]);
     }
 
     /**
@@ -92,7 +97,7 @@ class EventoController extends Controller
         $evento->update($request->validated());
 
         return Redirect::route('eventos.index')
-            ->with('success', 'Evento updated successfully');
+            ->with('success', 'Evento Actualizado Correctamente');
     }
 
     public function destroy($id): RedirectResponse
@@ -100,6 +105,6 @@ class EventoController extends Controller
         Evento::find($id)->delete();
 
         return Redirect::route('eventos.index')
-            ->with('success', 'Evento deleted successfully');
+            ->with('success', 'Evento Eliminado Correctamente');
     }
 }

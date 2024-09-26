@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bicicleta;
+use App\Models\Centro;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\BicicletaRequest;
@@ -28,8 +29,9 @@ class BicicletaController extends Controller
     public function create(): View
     {
         $bicicleta = new Bicicleta();
+        $centros = Centro::all();
 
-        return view('bicicleta.create', compact('bicicleta'));
+        return view('bicicleta.create', compact('bicicleta','centros'));
     }
 
     /**

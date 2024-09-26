@@ -34,8 +34,7 @@
                                         <th>No</th>
                                         <th>Nombre</th>
                                         <th>Regional</th>
-                                        <th>Latitud</th>
-                                        <th>Longitud</th>
+                       
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -45,12 +44,11 @@
                                             <td>{{ ++$i }}</td>
                                             <td>{{ $centro->nombre }}</td>
                                             <td>{{ $centro->regional }}</td>
-                                            <td>{{ $centro->latitud }}</td>
-                                            <td>{{ $centro->longitud }}</td>
+                                  
                                             <td>
                                                 <form action="{{ route('centros.destroy', $centro->id) }}" method="POST">
                                                     <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#mapModal{{ $centro->id }}">
-                                                        <i class="fa fa-fw fa-eye"></i> {{ __('Ver Mapa') }}
+                                                        <i class="fa fa-fw fa-eye"></i> {{ __('Ubicación') }}
                                                     </button>
                                                     <a class="btn btn-sm btn-success" href="{{ route('centros.edit', $centro->id) }}">
                                                         <i class="fa fa-fw fa-edit"></i> {{ __('Actualizar') }}

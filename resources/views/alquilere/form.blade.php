@@ -1,10 +1,7 @@
 <div class="container text-center">
     <div class="row p-3">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="card shadow-sm">
-                <div class="card-header">
-                    <h4 class="card-title">{{ __('Realizar un Alquiler') }}</h4>
-                </div>
                 <div class="card-body">
                     <form>
                         <div class="form-group mb-3">

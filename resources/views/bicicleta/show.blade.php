@@ -9,49 +9,51 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header" style="background-color: #4CAF50; color: white;">
-                        <div style="display: flex; justify-content: space-between; align-items: center;">
-                            <span class="card-title"> Bicicleta</span>
-                            <div class="float-right">
-                                <a class="btn btn-light btn-sm" href="{{ route('bicicletas.index') }}">{{ __('Volver') }}</a>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="text-center   card-body bg-light">
-                        <div class="text-center mb-4">
-                            <img src="{{ asset('storage/' . $bicicleta->img) }}" alt="{{ $bicicleta->marca }}" class="img-fluid" style="max-height: 300px; object-fit: cover;">
-                        </div>
-                        <div class="form-group mb-2">
-                            <strong>Marca:</strong>
-                            {{ $bicicleta->marca }}
-                        </div>
-                        <div class="form-group mb-2">
-                            <strong>Color:</strong>
-                            {{ $bicicleta->color }}
-                        </div>
-                        <div class="form-group mb-2">
-                            <strong>Estado:</strong>
-                            {{ $bicicleta->estado }}
-                        </div>
-                        <div class="form-group mb-2">
-                            <strong>Precio por hora:</strong>
-                            ${{ number_format($bicicleta->precioHora, 2) }}
-                        </div>
-                        <div class="form-group mb-2">
-                            <strong>Centro:</strong>
-                            {{ $bicicleta->centro->nombre }}
-                        </div>
-                    </div>
+
+                    
+                    
                 </div>
             </div>
         </div>
 
         <div class="row mt-4">
-            <div class="col-md-12">
-                <div class="card">
+            <div class="text-center     col-md-3">
+                <div class="card" style="height: 100%;">
+                    <div class="card-header" style="background-color: #4CAF50; color: white;">
+                        <span>{{ __('Información de la Bicicleta') }}</span>
+                    </div><br>
+                    <div class="card-body">
+                        <div class="text-center">
+                            <img src="{{ asset('storage/' . $bicicleta->img) }}" alt="{{ $bicicleta->marca }}" class="img-fluid" style="max-height: 200px; object-fit: cover;">
+                        </div><br>
+                        <div class="form-group mb-2">
+                            <strong class="badge text-bg-success">Marca:</strong><br>
+                            {{ $bicicleta->marca }}
+                        </div>
+                        <div class="form-group ">
+                            <strong class="badge text-bg-success">Color:</strong><br>
+                            {{ $bicicleta->color }}
+                        </div>
+                        <div class="form-group ">
+                            <strong class="badge text-bg-success">Precio x Hora:</strong><br>
+                            ${{ number_format($bicicleta->precioHora, 2) }}
+                        </div>
+                        <div class="form-group ">
+                            <strong class="badge text-bg-success">Centro:</strong><br>
+                            {{ $bicicleta->centro->nombre }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+                <div class="card" style="height: 100%;">
                     <div class="card-header" style="background-color: #4CAF50; color: white;">
                         <span>{{ __('Ubicación tiempo real de la bicicleta') }}</span>
+                        <div class="float-right">
+                                <a class="btn btn-light btn-sm" href="{{ route('bicicletas.index') }}">{{ __('Volver') }}</a>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div id="map" style="height: 500px;"></div> <!-- Mapa aquí -->
@@ -97,4 +99,3 @@
         </script>
     </section>
 @endsection
-

@@ -89,7 +89,7 @@ class EntregaController extends Controller
     }
 
     return Redirect::route('entregas.index')
-        ->with('success', 'Entrega created successfully and bicycle activated.');
+        ->with('success', 'Entrega Registrada y Bicicleta nuevamente Activada.');
 }
 
 

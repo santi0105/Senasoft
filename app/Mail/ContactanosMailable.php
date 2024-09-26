@@ -27,7 +27,7 @@ class ContactanosMailable extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: ' CicloSENA confirma tu alquiler',
+            subject: ' EcoCycle confirma tu alquiler',
         );
     }
 
